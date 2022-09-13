@@ -1,10 +1,10 @@
 import random
 from task1 import decorator_1
 from task2 import decorator_2
-from task3 import ComputeMetrics, PrintSpecs, plot_table
+from task3 import SpecsMetrics, plot_table
 
 
-@decorator_2
+@SpecsMetrics
 def pascal_triangle(n):
     """Calculates and returns pascal triangle"""
     results = [] # a container to collect the rows
@@ -19,7 +19,7 @@ def pascal_triangle(n):
 
     return results
 
-# @decorator_1
+# @SpecsMetrics
 # def quadratic_solver(a, b, c):
 #     """Solve Quadratic Equation"""
 #     partial_num = (b ** 2 - 4 * a * c) ** (1/2)
@@ -29,14 +29,14 @@ def pascal_triangle(n):
 #     return first_root, second_root
 
 
-@ComputeMetrics
+@SpecsMetrics
 def quadratic_solver(a, b, c):
     """Solves Quadratic Equation"""
     quadratic = lambda a, b, c: ((((-1 * b) + ((b ** 2 - 4 * a * c) ** (1/2))) / 2 * a),\
                                     (((-1 * b) - ((b ** 2 - 4 * a * c) ** (1/2))) / 2 * a))
     return quadratic(a, b, c)
 
-@decorator_2
+@SpecsMetrics
 def func():
     """Func2 does something great!"""
     print("I am ready to Start")
@@ -45,26 +45,26 @@ def func():
     for i in range(n):
         result += (i**2)
         
-@PrintSpecs
-def funx(n=2, m=5):
-    """funx does something excellent!"""
-    print("I am ready to do serious stuff")
-    max_val = float('-inf')
-    n =  random.randint(10,751)
-    res = [pow(i,2) for i in range(n)]
-    for i in res:
-        if i > max_val: 
-            max_val = i
+# @PrintSpecs
+# def funx(n=2, m=5):
+#     """funx does something excellent!"""
+#     print("I am ready to do serious stuff")
+#     max_val = float('-inf')
+#     n =  random.randint(10,751)
+#     res = [pow(i,2) for i in range(n)]
+#     for i in res:
+#         if i > max_val: 
+#             max_val = i
     
 if __name__ == "__main__": 
-    func()
-    funx()
-    func()
-    funx()
+    # func()
+    # funx()
+    # func()
+    # funx()
     func()
     pascal_triangle(3)
-    pascal_triangle(190)
-    quadratic_solver(4434525435343243, 4434525435343243, 4434525435343243)
+    # pascal_triangle(190)
+    # quadratic_solver(4434525435343243, 4434525435343243, 4434525435343243)
     quadratic_solver(32, 43, 23)    
     plot_table()
 
