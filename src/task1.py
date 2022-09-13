@@ -14,5 +14,5 @@ def decorator_1(base):
             base(**args)
         exec_time = time.time() - st
         no_of_calls += 1
-        print(f"func {base.__name__} executed in {round(exec_time, 4)} sec")    
+        print(f"func {base.__name__} {no_of_calls} executed in {round(exec_time, 4)} sec")    
     return f
