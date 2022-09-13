@@ -4,7 +4,7 @@ import io
 
 
 def decorator_1(base):
-    """prints function execution time and the number of times it was called"""
+    """Prints function execution time and the number of times it was called"""
     
     no_of_calls = 0
     def f(*args, **kwargs):

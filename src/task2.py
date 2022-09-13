@@ -1,8 +1,9 @@
 import inspect
 
+
 def decorator_2(ff):
     
-    def f(bar1, bar2=""):
+    def f(*args, **kwargs):
         print("Name:\t", ff.__name__)
         print("Type:\t", type(ff))
         print("Doc:\t", '\n\t '.join(ff.__doc__.split('\n')))
@@ -10,6 +11,5 @@ def decorator_2(ff):
         print("Source: ", end=' ')
         print('\n\t '.join(inspect.getsource(ff).split('\n')))
         print("Output:\t ", end='')
-        ff(bar1, bar2)
+        ff(*args, **kwargs)
     return f
-
