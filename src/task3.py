@@ -1,4 +1,5 @@
 import time
+import inspect
 import contextlib
 
 
@@ -34,3 +35,43 @@ class ComputeMetrics:
 
         metrics[fname] = exec_time
         print(f"func {fname} {self.counter} executed in {exec_time} sec")    
+
+
+class ComputeMetrics:
+    """Prints function execution time and the number of times it was called"""
+    def __init__(self, function):
+        self.function = function
+        self.counter = 0
+     
+    def __call__(self, *args):
+ 
+        st = time.time()
+        global OUT_FILE
+
+        fdesc = open(OUT_FILE, "a")
+        with contextlib.redirect_stdout(fdesc) as k:
+            self.function(*args)
+        
+        self.counter += 1
+        exec_time = time.time() - st
+        fname = self.function.__name__
+
+        metrics[fname] = exec_time
+        print(f"func {fname} {self.counter} executed in {exec_time} sec")    
+
+class PrintSpecs:
+    """Prints function execution time and the number of times it was called"""
+    def __init__(self, function):
+        self.function = function
+        self.counter = 0
+     
+    def __call__(self, *args, **kwargs):
+
+        print("Name:\t", self.function.__name__)
+        print("Type:\t", type(self.function))
+        print("Doc:\t", '\n\t '.join(self.function.__doc__.split('\n')))
+        print("Sign:\t", str(inspect.signature(self.function)))
+        print("Source: ", end=' ')
+        print('\n\t '.join(inspect.getsource(self.function).split('\n')))
+        print("Output:\t ", end='')
+        self.function(*args, **kwargs)

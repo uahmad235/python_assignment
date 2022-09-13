@@ -1,8 +1,7 @@
 import random
 from task1 import decorator_1
 from task2 import decorator_2
-from task3 import ComputeMetrics
-from task3 import plot_table
+from task3 import ComputeMetrics, PrintSpecs, plot_table
 
 
 @decorator_2
@@ -46,7 +45,7 @@ def func():
     for i in range(n):
         result += (i**2)
         
-@ComputeMetrics
+@PrintSpecs
 def funx(n=2, m=5):
     """funx does something excellent!"""
     print("I am ready to do serious stuff")
