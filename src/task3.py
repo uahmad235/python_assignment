@@ -1,6 +1,7 @@
 import time
 import inspect
 import contextlib
+from task4 import ErrorLogsDecorator
 
 
 metrics = {}   # store function execution metrics
@@ -8,7 +9,7 @@ OUT_FILE = 'logs.txt'  # path where decorator logs will be dumped
 
 
 def plot_table():
-    """Plot metrics table by rank"""
+    """Plot metrics table sorted by execution time"""
     sorted_metrics = sorted(metrics.items(), key=lambda item: item[1])
     print('{: <17} | {: ^13} | {: ^15}'.format("PROGRAM", "RANK", "TIME"))
     for rank, fn_exec_time in enumerate(sorted_metrics):
@@ -17,9 +18,11 @@ def plot_table():
 
 
 def Decorator(ff):
+    @ErrorLogsDecorator
     def wrapper(*args):
         fdesc = open(OUT_FILE, "a")
         with contextlib.redirect_stdout(fdesc) as k:
+
             return ff(*args)
     return wrapper
 
@@ -53,6 +56,8 @@ class SpecsMetrics:
         print("Source: ", end=' ')
         print('\n\t '.join(inspect.getsource(self.function).split('\n')))
         print("Output:\t ", end='')
+        # Uncomment this line to test exception handling functionality
+        # raise ValueError("Some Value Error")
         self.function(*args, **kwargs)
 
     def __call__(self, *args, **kwargs):
