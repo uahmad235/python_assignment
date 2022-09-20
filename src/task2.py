@@ -1,4 +1,6 @@
+import contextlib
 import inspect
+import io
 
 
 def decorator_2(fn):
@@ -14,5 +16,12 @@ def decorator_2(fn):
         print("Source: ", end=' ')
         print('\n\t '.join(inspect.getsource(fn).split('\n')))
         print("Output:\t ", end='')
-        fn(*args, **kwargs)
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            fn(*args, **kwargs)
+        s = f.getvalue()
+        for line in s.splitlines():
+            print('\t', line)
+        
     return function_inspector
