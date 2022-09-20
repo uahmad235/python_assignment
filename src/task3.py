@@ -35,11 +35,11 @@ class decorator_3:
         self.counter = 0
 
     @DecLogsHandler
-    def myfun(self, *args):
+    def compute_execution_time(self, *args, **kwargs):
         st = time.time()
         global OUT_FILE
 
-        self.function(*args)
+        self.function(*args, **kwargs)
         
         self.counter += 1
         exec_time = time.time() - st
@@ -49,19 +49,19 @@ class decorator_3:
         print(f"func {fname} {self.counter} executed in {exec_time} sec")    
 
     @DecLogsHandler
-    def myfun2(self, *args, **kwargs):
+    def inspect_object(self, *args, **kwargs):
         print("Name:\t", self.function.__name__)
         print("Type:\t", type(self.function))
         print("Doc:\t", '\n\t '.join(self.function.__doc__.split('\n')))
         print("Sign:\t", str(inspect.signature(self.function)))
         print("Source: ", end=' ')
         print('\n\t '.join(inspect.getsource(self.function).split('\n')))
-        print("Output:\t ", end='')
+        print("Output:\t", end='')
         # Uncomment this line to test exception handling functionality for decorator_4
         # raise ValueError("Some Value Error")
         self.function(*args, **kwargs)
 
     def __call__(self, *args, **kwargs):
         
-        self.myfun(*args)
-        self.myfun2(*args, **kwargs)
+        self.compute_execution_time(*args)
+        self.inspect_object(*args, **kwargs)

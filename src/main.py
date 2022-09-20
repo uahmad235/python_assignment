@@ -75,14 +75,14 @@ def funh(bar1, bar2=""):
     :param bar1: description
     :param bar2: description
     """ 
-    print("some\n\t multiline\n\t output")
+    print("some\n multiline\n output")
 
 
 if __name__ == "__main__": 
     func()
     # funx()
     func()
-    # funx()
+    funx()
     func()
     pascal_triangle(3)
     pascal_triangle(190)

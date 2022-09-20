@@ -15,7 +15,7 @@ def decorator_2(fn):
         print("Doc:\t", '\n\t '.join(fn.__doc__.split('\n')))
         print("Source: ", end=' ')
         print('\n\t '.join(inspect.getsource(fn).split('\n')))
-        print("Output:\t ", end='')
+        print("Output:", end='')
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f):
