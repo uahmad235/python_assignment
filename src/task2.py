@@ -1,15 +1,18 @@
 import inspect
 
 
-def decorator_2(ff):
+def decorator_2(fn):
+    """Print the inspect elements information of a decorated function"""
     
-    def f(*args, **kwargs):
-        print("Name:\t", ff.__name__)
-        print("Type:\t", type(ff))
-        print("Doc:\t", '\n\t '.join(ff.__doc__.split('\n')))
-        print("Sign:\t", str(inspect.signature(ff)))
+    def function_inspector(*args, **kwargs):
+        print("Name:\t", fn.__name__)
+        print("Type:\t", type(fn))
+        print("Sign:\t", str(inspect.signature(fn)))
+        print("Args:\t positional:", args)
+        print("\t key=worded:", kwargs)
+        print("Doc:\t", '\n\t '.join(fn.__doc__.split('\n')))
         print("Source: ", end=' ')
-        print('\n\t '.join(inspect.getsource(ff).split('\n')))
+        print('\n\t '.join(inspect.getsource(fn).split('\n')))
         print("Output:\t ", end='')
-        ff(*args, **kwargs)
-    return f
+        fn(*args, **kwargs)
+    return function_inspector
